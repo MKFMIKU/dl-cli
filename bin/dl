@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+const { prompt } = require('inquirer');
+
+const questions = [
+    {
+        type : 'input',
+        name : 'name',
+        message : 'Enter project name: '
+	}
+]
+
+program
+	.version(require('../package').version)
+	.description('dl-cli for daily research');
+
+
+program
+	.command('init')
+	.alias('i')
+	.description('Init a dl research project')
+	.action(() => {
+	  prompt(questions).then((answers) => console.log(answers))  
+	});
+
+program.parse(process.argv);
